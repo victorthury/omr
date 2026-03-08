@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Gabarito OMR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  CONTROL PANEL                                             -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="control-panel">
+      <div class="panel-header">
+        <div class="panel-header-top">
+          <div class="badge">OMR // Optical Mark Recognition</div>
+          <a href="gabaritos.html" class="nav-link">Gabaritos salvos →</a>
+        </div>
+        <h1>Gerador de<br /><span>Gabarito OMR</span></h1>
+        <p>
+          Configure os parâmetros e gere uma folha de respostas<br />pronta para
+          leitura óptica e impressão em A4.
+        </p>
+      </div>
+
+      <div class="field-group">
+        <label for="input-title">Título do Gabarito</label>
+        <input
+          type="text"
+          id="input-title"
+          placeholder="Ex: Simulado — Matemática 2024"
+          maxlength="80"
+        />
+      </div>
+
+      <div class="field-group">
+        <label for="input-questions">Número de Questões</label>
+        <input
+          type="number"
+          id="input-questions"
+          value="10"
+          min="1"
+          max="200"
+        />
+        <div class="field-hint">Mín: 1 — Máx: 200</div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="generateSheet()">
+          Gerar Gabarito
+        </button>
+        <button
+          class="btn btn-secondary"
+          id="btn-print"
+          onclick="window.print()"
+          disabled
+        >
+          Imprimir
+        </button>
+      </div>
+
+      <div id="answer-key-section" style="display: none">
+        <hr class="divider" />
+        <div class="ak-header">
+          <span class="ak-title">Gabarito</span>
+          <div class="ak-header-actions">
+            <button class="btn-clear-key" onclick="clearAnswerKey()">
+              Limpar tudo
+            </button>
+            <button class="btn-save-key" onclick="saveAnswerKey()">
+              Salvar
+            </button>
+          </div>
+        </div>
+        <div id="ak-save-feedback" class="ak-save-feedback" hidden></div>
+        <div id="answer-key-grid"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  PREVIEW                                                   -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="preview-wrapper">
+      <div class="preview-label">▸ preview — folha A4 (794 × 1123 px)</div>
+      <div id="omr-sheet"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  JAVASCRIPT                                                -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <script src="script.js"></script>
+  </body>
+</html>
