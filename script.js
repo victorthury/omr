@@ -183,6 +183,12 @@ function scalePreview() {
 
 window.addEventListener('resize', scalePreview);
 
+window.addEventListener('beforeprint', () => {
+  const sheet = document.getElementById('omr-sheet');
+  if (sheet) { sheet.style.transform = ''; sheet.style.marginLeft = ''; sheet.style.marginBottom = ''; }
+});
+window.addEventListener('afterprint', scalePreview);
+
 function renderAnswerKeyEditor(nQ) {
   const section = document.getElementById('answer-key-section');
   const grid = document.getElementById('answer-key-grid');
